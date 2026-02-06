@@ -1,2 +1,4 @@
 # BDAY-D
-Cake Build - Layered animated cake construction with camera view transitions Candle Blowing - Interactive candle blowing with microphone or keyboard Video - Celebration video display
+Cake Build - Layered animated cake construction with camera view transitions + hand drawn doodles
+Candle Blowing - Interactive candle blowing with microphone or keyboard 
+Additional personalised video 
