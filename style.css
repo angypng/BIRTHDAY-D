@@ -1,0 +1,129 @@
+body {
+  margin: 0;
+  background: #FAF7F0;
+  font-family: sans-serif;
+  overflow: hidden;
+  color: #d1646f;
+}
+
+section {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+section.active {
+  display: flex;
+}
+
+/* COVER */
+.cake-button {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+/* CAKE SCENE */
+#cake-scene {
+  position: relative;
+}
+
+#enter-text {
+  position: absolute;
+  bottom: 15%;
+  font-size: 0.9rem;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+#cake-container {
+  position: relative;
+  perspective: 1000px;
+}
+
+#cake {
+  width: 200px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 2s ease;
+}
+
+.layer {
+  height: 40px;
+  width: 200px;
+  border-radius: 6px;
+  margin-top: 5px;
+  opacity: 0;
+  transform: translateY(-200px);
+}
+
+.layer1 { background: #f6c3b5; }
+.layer2 { background: #f7b3a1; }
+.layer3 { background: #fda390; }
+
+.frosting {
+  height: 20px;
+  background: #f8e1d2;
+  border-radius: 10px;
+}
+
+#top-view {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+#age-number {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  opacity: 0;
+}
+
+/* CANDLE FOCUS */
+#candle-focus {
+  flex-direction: column;
+  display: none;
+}
+
+#candle-video,
+#candle-unlit {
+  width: 250px;
+  display: none;
+}
+
+#wish-text {
+  margin-top: 20px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.wish-main {
+  font-family: 'Chewy', cursive;
+  font-size: 2rem;
+}
+
+.wish-sub {
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+/* ENDING */
+#ending {
+  display: none;
+}
+
+#ending img {
+  width: 300px;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+}
