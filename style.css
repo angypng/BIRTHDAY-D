@@ -6,6 +6,7 @@ body {
   color: #d1646f;
 }
 
+/* Sections */
 section {
   position: absolute;
   width: 100%;
@@ -21,13 +22,16 @@ section.active {
 
 /* COVER */
 .cake-button {
-  font-size: 2rem;
+  font-size: 2rem; /* normal sized emoji */
   cursor: pointer;
 }
 
 /* CAKE SCENE */
 #cake-scene {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #enter-text {
@@ -35,7 +39,7 @@ section.active {
   bottom: 15%;
   font-size: 0.9rem;
   opacity: 0;
-  transition: opacity 1s;
+  transition: opacity 1s ease;
 }
 
 #cake-container {
@@ -50,13 +54,20 @@ section.active {
   transition: transform 2s ease;
 }
 
+/* Layers */
 .layer {
   height: 40px;
   width: 200px;
   border-radius: 6px;
-  margin-top: 5px;
+  position: relative;
   opacity: 0;
-  transform: translateY(-200px);
+  transform: translateY(-150px);
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+/* Remove margin animation conflict */
+.layer + .layer {
+  margin-top: 5px;
 }
 
 .layer1 { background: #f6c3b5; }
@@ -67,8 +78,10 @@ section.active {
   height: 20px;
   background: #f8e1d2;
   border-radius: 10px;
+  margin-top: 5px;
 }
 
+/* Top View */
 #top-view {
   position: absolute;
   top: -100px;
@@ -76,9 +89,10 @@ section.active {
   transform: translateX(-50%);
   width: 200px;
   opacity: 0;
-  transition: opacity 1s;
+  transition: opacity 1s ease;
 }
 
+/* Age PNG */
 #age-number {
   position: absolute;
   top: -30px;
@@ -86,12 +100,15 @@ section.active {
   transform: translateX(-50%);
   width: 120px;
   opacity: 0;
+  transition: opacity 1s ease;
 }
 
 /* CANDLE FOCUS */
 #candle-focus {
   flex-direction: column;
-  display: none;
+  justify-content: center;
+  align-items: center;
+  display: none; /* JS switches to flex */
 }
 
 #candle-video,
@@ -104,7 +121,7 @@ section.active {
   margin-top: 20px;
   text-align: center;
   opacity: 0;
-  transition: opacity 1s;
+  transition: opacity 1s ease;
 }
 
 .wish-main {
@@ -120,6 +137,8 @@ section.active {
 /* ENDING */
 #ending {
   display: none;
+  justify-content: center;
+  align-items: center;
 }
 
 #ending img {
