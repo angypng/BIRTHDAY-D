@@ -5,129 +5,116 @@ const cakeBtn = document.querySelector(".cake-button");
 const layers = document.querySelectorAll(".layer");
 const frosting = document.querySelector(".frosting");
 const enterText = document.getElementById("enter-text");
-const cake = document.getElementById("cake");
 const topView = document.getElementById("top-view");
-const ageNumber = document.getElementById("age-number");
 
-const candleFocus = document.getElementById("candle-focus");
-const candleVideo = document.getElementById("candle-video");
-const candleUnlit = document.getElementById("candle-unlit");
-const wishText = document.getElementById("wish-text");
-const glitterContainer = document.getElementById("glitter-container");
+const flame = document.getElementById("flame");
+const wishSection = document.getElementById("wish-section");
+const cakeScene = document.getElementById("cake-scene");
 
-const ending = document.getElementById("ending");
-const snoopy = document.getElementById("snoopy-img");
+const snoopy = document.getElementById("snoopy");
 const finalText = document.getElementById("final-text");
+const ending = document.getElementById("ending");
 
-let interactionReady = false;
+let flameFrames = [
+  "assets/flame1.png",
+  "assets/flame2.png",
+  "assets/flame3.png"
+];
+
+let flameIndex = 0;
+let flameLoop;
 
 /* COVER */
 cakeBtn.onclick = () => {
   cover.classList.remove("active");
   experience.classList.add("active");
-  buildCake();
+  dropCake();
 };
 
-/* BUILD CAKE WITH BOUNCE */
-function buildCake() {
-  const order = [...layers, frosting];
-
-  order.forEach((el, i) => {
-    setTimeout(() => {
-      el.style.opacity = 1;
-      el.style.transform = "translateY(0)";
-      el.style.transition = "transform 0.8s cubic-bezier(.34,1.56,.64,1), opacity 0.8s";
-    }, i * 800);
+/* SLOWER DROP */
+function dropCake(){
+  layers.forEach((layer,i)=>{
+    setTimeout(()=>{
+      layer.style.animation="drop 1.2s ease forwards";
+    }, i*1200);
   });
 
-  setTimeout(() => enterText.style.opacity = 0.6, 4000);
+  setTimeout(()=>{
+    frosting.style.animation="drop 1.2s ease forwards";
+  }, 3600);
+
+  setTimeout(()=>{
+    enterText.style.opacity=0.6;
+  },5000);
+
+  startFlame();
+}
+
+/* FLAME LOOP */
+function startFlame(){
+  flameLoop = setInterval(()=>{
+    flameIndex = (flameIndex+1)%flameFrames.length;
+    flame.src = flameFrames[flameIndex];
+  },200);
 }
 
 /* ENTER */
 document.addEventListener("click", startCamera);
-document.addEventListener("keydown", e => {
+document.addEventListener("keydown", e=>{
   if(e.key==="Enter") startCamera();
 });
 
-let cameraStarted=false;
+let started=false;
 
 function startCamera(){
-  if(cameraStarted) return;
-  cameraStarted=true;
+  if(started) return;
+  started=true;
 
   enterText.style.opacity=0;
-  cake.style.transform="rotateX(60deg)";
+
+  topView.style.display="block";
   topView.style.opacity=1;
 
   setTimeout(()=>{
-    cake.style.transform="rotateX(0)";
     topView.style.opacity=0;
-    setTimeout(showCandles,2000);
+    setTimeout(()=>{
+      topView.style.display="none";
+      transformCake();
+    },1000);
   },3000);
 }
 
-/* TRANSFORMATION */
-function showCandles(){
-  ageNumber.style.opacity=1;
+/* SHRINK CAKE + ENLARGE CANDLES */
+function transformCake(){
+  cakeScene.style.transition="transform 2s ease, opacity 2s ease";
+  cakeScene.style.transform="scale(0.5)";
+  cakeScene.style.opacity=0;
 
   setTimeout(()=>{
-    cake.style.transform="scale(0.5)";
-    cake.style.opacity=0;
-    ageNumber.style.transform="translateX(-50%) scale(2)";
-
-    setTimeout(()=>{
-      document.getElementById("cake-scene").style.display="none";
-      candleFocus.style.display="flex";
-      candleVideo.style.display="block";
-      candleVideo.play();
-
-      candleVideo.onended=()=>{
-        setTimeout(()=>{
-          wishText.style.opacity=1;
-          interactionReady=true;
-        },800);
-      };
-    },2000);
-  },1000);
+    cakeScene.style.display="none";
+    wishSection.style.display="block";
+    wishSection.style.opacity=1;
+  },2000);
 }
 
 /* BLOW */
 document.addEventListener("keydown", e=>{
-  if(e.code==="Space" && interactionReady) blow();
+  if(e.code==="Space") blow();
 });
-document.addEventListener("click", ()=>{
-  if(interactionReady) blow();
-});
+document.addEventListener("click", blow);
 
 function blow(){
-  interactionReady=false;
-  candleVideo.style.display="none";
-  candleUnlit.style.display="block";
-  wishText.style.opacity=0;
-  createGlitter();
-
-  setTimeout(showEnding,3000);
-}
-
-/* GLITTER */
-function createGlitter(){
-  for(let i=0;i<50;i++){
-    const dot=document.createElement("div");
-    dot.classList.add("glitter");
-    dot.style.left=Math.random()*100+"vw";
-    dot.style.top="-10px";
-    dot.style.animationDelay=Math.random()*2+"s";
-    glitterContainer.appendChild(dot);
-  }
-}
-
-/* ENDING */
-function showEnding(){
-  candleFocus.style.display="none";
-  ending.style.display="flex";
+  clearInterval(flameLoop);
+  flame.style.display="none";
 
   setTimeout(()=>{
-    snoopy.style.opacity=1;
-    finalText.style.opacity=1;
-  },500);
+    wishSection.style.display="none";
+    ending.style.display="flex";
+
+    setTimeout(()=>{
+      snoopy.style.opacity=1;
+      finalText.style.opacity=1;
+    },500);
+
+  },1000);
 }
