@@ -11,4 +11,4 @@ let i = 0;
 setInterval(() => {
   flame.src = frames[i];
   i = (i + 1) % frames.length;
-}, 200);
+}, 180);
