@@ -1,54 +1,105 @@
 body {
   margin: 0;
   background: #f3efe9;
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
   overflow: hidden;
+  font-family: sans-serif;
 }
+
+/* ---------- INTRO ---------- */
+
+.intro {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#startBtn {
+  font-size: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+/* ---------- SCENE ---------- */
 
 .scene {
   position: relative;
-  width: 500px;
+  width: 400px;
   height: 600px;
 }
 
-/* ---------------- CAKE ---------------- */
+/* ---------- CAKE ---------- */
 
-.cake-area {
+.cake-wrapper {
   position: absolute;
-  bottom: 180px;
+  bottom: 150px;
   left: 50%;
   transform: translateX(-50%);
-  width: 320px;
-  text-align: center;
+  width: 260px;
+  height: 220px;
 }
 
-.cake {
+/* Base layer style */
+.layer {
+  position: absolute;
+  left: 0;
   width: 100%;
+  height: 50px;
+  border-radius: 10px;
   opacity: 0;
   transform: translateY(-400px);
-  animation: cakeDrop 1.5s ease forwards;
 }
 
-@keyframes cakeDrop {
+/* Your exact hex colors */
+.layer1 { background: #f6c3b5; bottom: 0; animation: drop 1.2s ease forwards 0.5s; }
+.layer2 { background: #f7b3a1; bottom: 50px; animation: drop 1.2s ease forwards 1.3s; }
+.layer3 { background: #fda390; bottom: 100px; animation: drop 1.2s ease forwards 2.1s; }
+
+.cream {
+  background: #f8e1d2;
+  bottom: 150px;
+  height: 30px;
+  animation: drop 1.2s ease forwards 2.9s;
+}
+
+@keyframes drop {
   0% { transform: translateY(-400px); opacity: 0; }
-  60% { transform: translateY(20px); opacity: 1; }
-  80% { transform: translateY(-10px); }
+  60% { transform: translateY(15px); opacity: 1; }
+  80% { transform: translateY(-8px); }
   100% { transform: translateY(0); opacity: 1; }
 }
 
-/* ---------------- CANDLE ---------------- */
+/* Top frosting PNG */
+.top-frosting {
+  position: absolute;
+  bottom: 180px;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(-400px);
+  animation: drop 1.2s ease forwards 3.7s;
+}
+
+/* ---------- CANDLE ---------- */
 
 .candle {
   position: absolute;
-  bottom: 160px;
+  bottom: 210px;
   left: 50%;
   transform: translateX(-50%) scale(0);
-  width: 140px; /* BIGGER */
+  width: 120px;
   opacity: 0;
-  animation: candleAppear 1s ease forwards 1.8s;
+  animation: candleAppear 1s ease forwards 5s;
 }
 
 @keyframes candleAppear {
@@ -58,57 +109,51 @@ body {
   }
 }
 
-/* ---------------- FLAME ---------------- */
+/* ---------- FLAME ---------- */
 
 .flame {
   position: absolute;
-  bottom: 255px;
+  bottom: 300px;
   left: 50%;
   transform: translateX(-50%);
-  width: 60px; /* BIGGER */
+  width: 50px;
   opacity: 0;
-  animation: flameFade 1s ease forwards 2.5s;
+  animation: fadeIn 1s forwards 5.8s;
 }
 
-@keyframes flameFade {
-  to { opacity: 1; }
-}
-
-/* ---------------- TEXT ---------------- */
+/* ---------- TEXT ---------- */
 
 .wish-text {
   position: absolute;
   bottom: 60px;
   width: 100%;
   text-align: center;
-  font-size: 30px;
+  font-size: 28px;
   color: #d1646f;
   opacity: 0;
-  animation: fadeIn 1s forwards 3.5s;
+  animation: fadeIn 1s forwards 6.5s;
 }
 
-/* ---------------- SNOOPY ---------------- */
+/* ---------- SNOOPY ---------- */
 
 .snoopy {
   position: absolute;
-  top: 30px;
+  top: 20px;
   left: 50%;
-  transform: translateX(-50%) scale(1.25);
-  width: 240px;
+  transform: translateX(-50%) scale(1.2);
+  width: 220px;
   opacity: 0;
-  animation: fadeIn 1.5s forwards 5s;
+  animation: fadeIn 1.5s forwards 8s;
 }
-
-/* ---------------- FINAL IMAGE ---------------- */
 
 .final-img {
   position: absolute;
-  top: 300px;
+  top: 320px;
   left: 50%;
   transform: translateX(-50%);
-  width: 280px;
+  width: 260px;
   opacity: 0;
-  animation: fadeIn 1.5s forwards 7s;
+  animation: fadeIn 1.5s forwards 10s;
 }
 
 @keyframes fadeIn {
