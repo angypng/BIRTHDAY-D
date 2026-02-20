@@ -1,139 +1,92 @@
 body {
-  margin:0;
-  background:#FAF7F0;
-  overflow:hidden;
-  color:#d1646f;
-  font-family:sans-serif;
+  margin: 0;
+  background: #f3efe9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
 }
 
-section {
-  position:absolute;
-  width:100%;
-  height:100vh;
-  display:none;
-  justify-content:center;
-  align-items:center;
+.scene {
+  position: relative;
+  width: 500px;
+  height: 500px;
 }
 
-section.active {
-  display:flex;
+.cake-area {
+  position: absolute;
+  bottom: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
 }
 
-/* COVER */
-.cake-button {
-  font-size:2rem;
-  cursor:pointer;
+.cake {
+  width: 100%;
+  opacity: 0;
+  transform: translateY(-500px);
+  animation: dropBounce 1.4s ease forwards 0.5s;
 }
 
-/* CAKE STACK */
-#cake-scene {
-  position:relative;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
+@keyframes dropBounce {
+  0% { transform: translateY(-500px); opacity: 0; }
+  60% { transform: translateY(20px); opacity: 1; }
+  80% { transform: translateY(-10px); }
+  100% { transform: translateY(0); opacity: 1; }
 }
 
-#cake {
-  display:flex;
-  flex-direction:column-reverse;
-  align-items:center;
+.candle {
+  position: absolute;
+  bottom: 140px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  opacity: 0;
+  animation: fadeIn 1s forwards 2.2s;
 }
 
-.layer {
-  width:220px;
-  height:45px;
-  opacity:0;
-  transform:translateY(-250px);
-  animation-fill-mode:forwards;
+.flame {
+  position: absolute;
+  bottom: 195px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  opacity: 0;
+  animation: fadeIn 1s forwards 2.8s;
 }
 
-.bottom { background:#fda390; }
-.middle { background:#f7b3a1; }
-.top { background:#f6c3b5; }
-
-.frosting {
-  width:220px;
-  height:25px;
-  background:#f8e1d2;
-  border-radius:12px;
-  display:flex;
-  justify-content:center;
-  align-items:flex-end;
-  opacity:0;
-  transform:translateY(-250px);
+.wish-text {
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+  text-align: center;
+  font-size: 28px;
+  color: #d1646f;
+  opacity: 0;
+  animation: fadeIn 1s forwards 3.5s;
 }
 
-/* Candle placement */
-#candle-wrapper {
-  position:relative;
-  transform:translateY(-15px);
+.snoopy {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%) scale(1.15);
+  width: 200px;
+  opacity: 0;
+  animation: fadeIn 1.5s forwards 5s;
 }
 
-#candle-base {
-  width:120px;
+.extra {
+  position: absolute;
+  top: 260px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250px;
+  opacity: 0;
+  animation: fadeIn 1.5s forwards 7s;
 }
 
-#flame {
-  position:absolute;
-  width:120px;
-  left:0;
-  top:0;
-  pointer-events:none;
-}
-
-/* ENTER */
-#enter-text {
-  margin-top:40px;
-  opacity:0;
-  transition:opacity 1s;
-}
-
-/* TOP VIEW */
-#top-view {
-  position:absolute;
-  width:260px;
-  display:none;
-  opacity:0;
-  transition:opacity 1s;
-}
-
-/* WISH */
-#wish-section {
-  position:absolute;
-  bottom:20%;
-  text-align:center;
-  opacity:0;
-  display:none;
-}
-
-.wish-main {
-  font-family:'Chewy', cursive;
-  font-size:2rem;
-}
-
-/* ENDING */
-#ending {
-  display:none;
-  flex-direction:column;
-  align-items:center;
-}
-
-#snoopy {
-  width:380px;
-  opacity:0;
-  transform:scale(1.1);
-  transition:opacity 2s;
-}
-
-#final-text {
-  width:250px;
-  opacity:0;
-  transition:opacity 2s;
-}
-
-/* DROP ANIMATION */
-@keyframes drop {
-  0% { transform:translateY(-250px); opacity:0; }
-  70% { transform:translateY(20px); opacity:1; }
-  100% { transform:translateY(0); opacity:1; }
+@keyframes fadeIn {
+  to { opacity: 1; }
 }
