@@ -1,3 +1,13 @@
+const startBtn = document.getElementById("startBtn");
+const intro = document.querySelector(".intro");
+const scene = document.querySelector(".scene");
+
+startBtn.onclick = () => {
+  intro.style.display = "none";
+  scene.classList.remove("hidden");
+};
+
+/* Flame loop */
 const flame = document.querySelector(".flame");
 
 const frames = [
@@ -12,3 +22,4 @@ setInterval(() => {
   flame.src = frames[i];
   i = (i + 1) % frames.length;
 }, 180);
+
